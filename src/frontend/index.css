@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Warm cream ivory background */
+    --background: 0.965 0.022 78;
+    /* Deep warm brown foreground */
+    --foreground: 0.28 0.045 55;
+
+    /* Card: slightly warmer cream */
+    --card: 0.955 0.028 72;
+    --card-foreground: 0.28 0.045 55;
+
+    --popover: 0.955 0.028 72;
+    --popover-foreground: 0.28 0.045 55;
+
+    /* Primary: terracotta / deep peach */
+    --primary: 0.58 0.14 42;
+    --primary-foreground: 0.97 0.015 75;
+
+    /* Secondary: warm blush */
+    --secondary: 0.92 0.04 65;
+    --secondary-foreground: 0.38 0.06 45;
+
+    /* Muted: soft warm beige */
+    --muted: 0.94 0.03 72;
+    --muted-foreground: 0.52 0.04 60;
+
+    /* Accent: muted sage green */
+    --accent: 0.72 0.065 145;
+    --accent-foreground: 0.22 0.05 150;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* Border: soft warm tan */
+    --border: 0.86 0.045 68;
+    --input: 0.86 0.045 68;
+    --ring: 0.58 0.14 42;
+
+    /* Golden amber for special highlights */
+    --amber: 0.75 0.15 72;
+    --amber-glow: 0.82 0.12 75;
+
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.955 0.028 72;
+    --sidebar-foreground: 0.28 0.045 55;
+    --sidebar-primary: 0.58 0.14 42;
+    --sidebar-primary-foreground: 0.97 0.015 75;
+    --sidebar-accent: 0.72 0.065 145;
+    --sidebar-accent-foreground: 0.22 0.05 150;
+    --sidebar-border: 0.86 0.045 68;
+    --sidebar-ring: 0.58 0.14 42;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes float-up {
+    0% {
+      transform: translateY(0px) scale(1);
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-120px) scale(0.6);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes breathe-in {
+    0% { transform: scale(1); box-shadow: 0 0 30px oklch(0.58 0.14 42 / 0.3); }
+    100% { transform: scale(1.5); box-shadow: 0 0 80px oklch(0.58 0.14 42 / 0.5); }
+  }
+
+  @keyframes breathe-hold {
+    0%, 100% { transform: scale(1.5); box-shadow: 0 0 80px oklch(0.58 0.14 42 / 0.5); }
+  }
+
+  @keyframes breathe-out {
+    0% { transform: scale(1.5); box-shadow: 0 0 80px oklch(0.58 0.14 42 / 0.5); }
+    100% { transform: scale(1); box-shadow: 0 0 30px oklch(0.58 0.14 42 / 0.3); }
+  }
+
+  @keyframes breathe-rest {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 30px oklch(0.58 0.14 42 / 0.3); }
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+
+  .fade-up {
+    animation: fade-up 0.9s ease-out forwards;
+  }
+
+  .fade-up-delay-1 {
+    animation: fade-up 0.9s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .fade-up-delay-2 {
+    animation: fade-up 0.9s ease-out 0.45s forwards;
+    opacity: 0;
+  }
+
+  .fade-up-delay-3 {
+    animation: fade-up 0.9s ease-out 0.7s forwards;
+    opacity: 0;
+  }
+
+  .section-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .section-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-up-delay-1, .fade-up-delay-2, .fade-up-delay-3 {
+    opacity: 1;
+    animation: none;
+  }
+  .section-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Particle styles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: oklch(0.78 0.13 72);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .particle {
+    animation: float-up linear infinite;
+  }
+}
