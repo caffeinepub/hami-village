@@ -318,7 +318,7 @@ export default function App() {
             className="font-body text-lg mb-12"
             style={{ color: "oklch(0.44 0.05 55)" }}
           >
-            Tell me where you feel comfortable today, Yami.{" "}
+            Tell me what you feel is ok, Yami.{" "}
             <em>There&apos;s no wrong answer.</em>
           </p>
 
